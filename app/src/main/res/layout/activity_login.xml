@@ -1,18 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/background_gradient">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginTextLayout"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        app:boxStrokeColor="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:textColorHint="@color/separator"
+        android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="10"
+            android:hint="@string/mobile" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginTextLayout"
+        android:layout_centerInParent="true"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="5dp" />
+
+    <LinearLayout
+        android:id="@+id/orLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <View
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="start|center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/or"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <View
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="end|center"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orLayout"
+        android:layout_centerInParent="true"
+        android:text="@string/signUp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="5dp" />
+
+    <!--<ImageView
+        android:id="@+id/qr"
+        android:layout_centerInParent="true"
+        android:tint="@color/white"
+        android:src="@drawable/qr_code_icon"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Scan QR code"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/qr"
+        android:layout_margin="30dp"
+        android:textSize="20sp"/>-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

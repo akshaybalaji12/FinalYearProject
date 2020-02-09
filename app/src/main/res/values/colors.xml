@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#fafafa</color>
+    <color name="colorPrimaryDark">#fafafa</color>
+    <color name="colorAccent">#00F260</color>
+    <color name="colorAccentSecondary">#38ef7d</color>
+    <color name="colorGradientTop">#11998e</color>
+    <color name="white">#fafafa</color>
+    <color name="separator">#e3e3e3</color>
+    <color name="textColorHint">#464646</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#e3e3e3</color>
 </resources>
