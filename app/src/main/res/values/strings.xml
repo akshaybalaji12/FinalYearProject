@@ -5,4 +5,5 @@
     <string name="signUp">Sign Up</string>
     <string name="or">Or</string>
     <string name="mobile">Mobile No</string>
+    <string name="scan">Scan QR code</string>
 </resources>

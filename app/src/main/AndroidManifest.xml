@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="project.akshay.finalyear">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+
     <application
         android:name=".ProjectApplication"
         android:allowBackup="true"
@@ -10,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".ScanQRActivity"></activity>
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionTheme">
             <intent-filter>
