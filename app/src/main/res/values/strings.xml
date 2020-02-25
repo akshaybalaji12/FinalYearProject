@@ -4,6 +4,13 @@
     <string name="welcome">Welcome</string>
     <string name="signUp">Sign Up</string>
     <string name="or">Or</string>
+    <string name="name">Name</string>
     <string name="mobile">Mobile No</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confPassword">Confirm Password</string>
+    <string name="createAccount">Create a new account below.</string>
+    <string name="signUpPageTitle">Create an Account</string>
+    <string name="selectType">Select Type</string>
     <string name="scan">Scan QR code</string>
 </resources>

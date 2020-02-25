@@ -14,7 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanQRActivity"></activity>
+        <activity android:name=".ProcessorActivity"></activity>
+        <activity android:name=".FishermenActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ScanQRActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionTheme" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
