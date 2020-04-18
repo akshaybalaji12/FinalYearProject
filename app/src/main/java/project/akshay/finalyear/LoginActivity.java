@@ -134,14 +134,32 @@ public class LoginActivity extends AppCompatActivity {
 
         switch (userType) {
 
-            case 120:
+            case Utilities.ID_PROCESSOR:
                 startActivity(new Intent(LoginActivity.this, ProcessorActivity.class));
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 finish();
                 break;
 
-            case 122:
+            case Utilities.ID_FISHERMAN:
                 startActivity(new Intent(LoginActivity.this, FishermenActivity.class));
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                finish();
+                break;
+
+            case Utilities.ID_DISTRIBUTOR:
+                startActivity(new Intent(LoginActivity.this, DistributorActivity.class));
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                finish();
+                break;
+
+            case Utilities.ID_FIRST_RECEIVER:
+                startActivity(new Intent(LoginActivity.this, FirstReceiverActivity.class));
+                overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
+                finish();
+                break;
+
+            case Utilities.ID_SHOP:
+                startActivity(new Intent(LoginActivity.this, ShopActivity.class));
                 overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
                 finish();
                 break;

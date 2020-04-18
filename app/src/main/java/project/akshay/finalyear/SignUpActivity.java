@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 if(task.isSuccessful()) {
 
-                                    User user = new User(name,mob,email,120);
+                                    User user = new User(name,mob,email,124);
                                     databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid())
                                             .setValue(user);
 

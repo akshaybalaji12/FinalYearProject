@@ -13,4 +13,10 @@
     <string name="signUpPageTitle">Create an Account</string>
     <string name="selectType">Select Type</string>
     <string name="scan">Scan QR code</string>
+    <string name="logout">Logout</string>
+    <string name="addProduct">Add Product</string>
+    <string name="companyName">Name of the company</string>
+    <string name="fishType">Fish type</string>
+    <string name="where">Location</string>
+    <string name="submit">Submit</string>
 </resources>

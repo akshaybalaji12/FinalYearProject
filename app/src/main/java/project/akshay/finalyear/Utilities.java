@@ -8,8 +8,11 @@ import java.lang.reflect.Field;
 
 public class Utilities {
 
-    private static final int ID_PROCESSOR = 120;
-    private static final int ID_FISHERMAN = 122;
+    public static final int ID_PROCESSOR = 120;
+    public static final int ID_FISHERMAN = 122;
+    public static final int ID_FIRST_RECEIVER = 124;
+    public static final int  ID_DISTRIBUTOR = 126;
+    public static final int ID_SHOP = 128;
 
     public static void setDefaultFont(Context context,
                                       String staticTypefaceFieldName, String fontAssetName) {

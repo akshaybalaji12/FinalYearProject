@@ -14,8 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProcessorActivity"></activity>
-        <activity android:name=".FishermenActivity" />
+        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".DistributorActivity" />
+        <activity android:name=".FirstReceiverActivity" />
+        <activity
+            android:name=".ProcessorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionTheme" />
+        <activity
+            android:name=".FishermenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionTheme" />
         <activity
             android:name=".SignUpActivity"
             android:screenOrientation="portrait"
