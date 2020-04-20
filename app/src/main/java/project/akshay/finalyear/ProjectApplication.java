@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.google.firebase.FirebaseApp;
 
+import project.akshay.finalyear.Utility.Utilities;
+
 public class ProjectApplication extends Application {
 
     @Override

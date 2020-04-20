@@ -1,4 +1,4 @@
-package project.akshay.finalyear;
+package project.akshay.finalyear.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +15,7 @@ import com.google.zxing.Result;
 import java.util.Collections;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import project.akshay.finalyear.R;
 
 public class ScanQRActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 

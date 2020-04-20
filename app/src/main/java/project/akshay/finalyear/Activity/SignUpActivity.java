@@ -1,6 +1,5 @@
-package project.akshay.finalyear;
+package project.akshay.finalyear.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,13 +9,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,6 +21,9 @@ import java.util.Objects;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import project.akshay.finalyear.R;
+import project.akshay.finalyear.Model.User;
+import project.akshay.finalyear.Utility.Utilities;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -102,10 +100,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 if(task.isSuccessful()) {
 
                                     User user = new User(name,mob,email,124);
-                                    databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid())
+                                    databaseReference
+                                            .child("users")
+                                            .child(firebaseAuth.getCurrentUser().getUid())
                                             .setValue(user);
 
-                                    Toast.makeText(SignUpActivity.this, "Account created", Toast.LENGTH_SHORT).show();
+                                    Utilities.notifyUser(SignUpActivity.this, "Account created");
                                     onBackPressed();
 
                                 }

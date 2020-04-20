@@ -1,4 +1,4 @@
-package project.akshay.finalyear;
+package project.akshay.finalyear.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +24,10 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import project.akshay.finalyear.Utility.PreferencesManager;
+import project.akshay.finalyear.R;
+import project.akshay.finalyear.Model.User;
+import project.akshay.finalyear.Utility.Utilities;
 
 public class LoginActivity extends AppCompatActivity {
 

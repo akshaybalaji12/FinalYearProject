@@ -19,4 +19,6 @@
     <string name="fishType">Fish type</string>
     <string name="where">Location</string>
     <string name="submit">Submit</string>
+    <string name="done">Done</string>
+    <string name="productIDMessage">The Product ID is :</string>
 </resources>

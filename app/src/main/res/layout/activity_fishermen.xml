@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FishermenActivity"
+    tools:context=".Activity.FishermenActivity"
     android:background="@color/white">
 
     <TextView
@@ -25,6 +25,13 @@
         android:orientation="vertical"
         android:layout_margin="5dp"
         android:layout_centerInParent="true">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/addLayout"
@@ -48,6 +55,44 @@
                 android:text="@string/addProduct"
                 android:textSize="20sp"
                 android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productIDLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="@string/productIDMessage"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/productIDText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:text="@string/addProduct"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/doneButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_margin="5dp"
+                android:text="@string/done"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
 

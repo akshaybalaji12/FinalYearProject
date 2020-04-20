@@ -1,4 +1,4 @@
-package project.akshay.finalyear;
+package project.akshay.finalyear.Model;
 
 public class User {
 

@@ -1,4 +1,4 @@
-package project.akshay.finalyear;
+package project.akshay.finalyear.Utility;
 
 import android.content.Context;
 import android.content.SharedPreferences;

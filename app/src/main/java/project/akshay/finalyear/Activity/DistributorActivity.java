@@ -1,8 +1,10 @@
-package project.akshay.finalyear;
+package project.akshay.finalyear.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import project.akshay.finalyear.R;
 
 public class DistributorActivity extends AppCompatActivity {
 
