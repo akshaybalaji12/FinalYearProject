@@ -136,11 +136,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateScreen(int userType) {
 
-        startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
+        /*startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
         overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
-        finish();
+        finish();*/
 
-        /*switch (userType) {
+        switch (userType) {
 
             case Utilities.ID_PROCESSOR:
                 startActivity(new Intent(LoginActivity.this, ProcessorActivity.class));
@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
                 break;
 
-        }*/
+        }
 
     }
 }

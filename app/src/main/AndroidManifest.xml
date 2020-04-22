@@ -28,7 +28,7 @@
             android:theme="@style/NoActionTheme" />
         <activity
             android:name=".Activity.FishermenActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionTheme" />
         <activity
             android:name=".Activity.SignUpActivity"

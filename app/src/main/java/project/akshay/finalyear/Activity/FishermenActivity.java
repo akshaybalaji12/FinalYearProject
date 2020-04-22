@@ -19,6 +19,7 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import project.akshay.finalyear.Model.Product;
 import project.akshay.finalyear.Utility.PreferencesManager;
 import project.akshay.finalyear.R;
 
@@ -54,11 +55,10 @@ public class FishermenActivity extends AppCompatActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
-    PreferencesManager preferencesManager;
+    private PreferencesManager preferencesManager;
+    private DatabaseReference databaseReference;
 
     private static final String allowedCharacters = "ABCDEFGHIJKLMOPQRSTUVWXYZ1234567890";
-
-    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,12 +99,15 @@ public class FishermenActivity extends AppCompatActivity {
 
             String productID = generateProductID();
 
+            Product newProduct = new Product(productID);
+            newProduct.getSupplyChainArray().add(preferencesManager.getUserID());
+
             //TODO create Product object
 
             databaseReference
                     .child("products")
                     .child(productID)
-                    .setValue("Product")
+                    .setValue(newProduct)
                     .addOnCompleteListener(task -> {
                         if(task.isSuccessful()) {
 
