@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import java.util.Collections;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import project.akshay.finalyear.R;
+import project.akshay.finalyear.Utility.Utilities;
 
 public class ScanQRActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -63,8 +65,10 @@ public class ScanQRActivity extends AppCompatActivity implements ZXingScannerVie
     public void handleResult(Result rawResult) {
 
         if(rawResult != null) {
-            Toast.makeText(getApplicationContext(),rawResult.getText(),Toast.LENGTH_LONG).show();
             qrCodeScanner.stopCamera();
+            Intent intent = new Intent();
+            intent.putExtra(Utilities.STRING_EXTRA_QR_CODE,rawResult.getText());
+            setResult(RESULT_OK, intent);
             finish();
         }
 

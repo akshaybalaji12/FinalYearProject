@@ -18,6 +18,24 @@
         android:textSize="24sp"
         android:textColor="@color/colorAccent"/>
 
+    <ImageView
+        android:id="@+id/qrImageView"
+        android:contentDescription="@string/generate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/generateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/qrImageView"
+        android:layout_margin="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="@string/generate"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"
