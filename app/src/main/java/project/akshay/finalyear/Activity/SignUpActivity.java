@@ -21,17 +21,19 @@ import java.util.Objects;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import project.akshay.finalyear.Fragment.BottomDialogFragment;
+import project.akshay.finalyear.Interface.FragmentInterface;
 import project.akshay.finalyear.R;
 import project.akshay.finalyear.Model.User;
 import project.akshay.finalyear.Utility.Utilities;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements FragmentInterface {
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
+    private BottomDialogFragment bottomDialogFragment;
 
     TextView titleText;
-    //String[] userTypes = {"Fisherman","Processor","Wholesaler","Distributor"};
     @BindView(R.id.nameText)
     TextInputEditText nameText;
 
@@ -40,6 +42,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     @BindView(R.id.mobText)
     TextInputEditText mobText;
+
+    @BindView(R.id.userRole)
+    TextInputEditText userTypeText;
 
     @BindView(R.id.passwordText)
     TextInputEditText passwordText;
@@ -60,6 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
     String signUpTitle;
 
     String name, email, password, confPassword, mob;
+    int userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +83,14 @@ public class SignUpActivity extends AppCompatActivity {
 
         titleText = findViewById(R.id.titleText);
         titleText.setText(signUpTitle);
+
+        userTypeText.setOnClickListener(view -> {
+
+            bottomDialogFragment = new BottomDialogFragment(SignUpActivity.this);
+            bottomDialogFragment.setFragmentInterface(SignUpActivity.this);
+            bottomDialogFragment.show(getSupportFragmentManager(), "BottomDialogFragment");
+
+        });
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 if(task.isSuccessful()) {
 
-                                    User user = new User(name,mob,email,124);
+                                    User user = new User(name,mob,email,userType);
                                     databaseReference
                                             .child("users")
                                             .child(firebaseAuth.getCurrentUser().getUid())
@@ -125,4 +139,16 @@ public class SignUpActivity extends AppCompatActivity {
         finish();
         overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
     }
+
+    @Override
+    public void callBackMethod(String result) {
+
+        bottomDialogFragment.dismiss();
+        userTypeText.setText(result);
+
+        int pos = Utilities.userRoles.indexOf(result);
+        userType = Utilities.userRoleID.get(pos);
+
+    }
+
 }

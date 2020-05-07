@@ -8,6 +8,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static android.content.Context.WINDOW_SERVICE;
 
@@ -22,6 +24,9 @@ public class Utilities {
     public static final int REQUEST_CODE_QR_CODE = 25;
 
     public static final String STRING_EXTRA_QR_CODE = "STRING_EXTRA_QR_CODE";
+
+    public static final ArrayList<String> userRoles = new ArrayList<>(Arrays.asList("Fisherman","First Receiver","Processor","Distributor","Shop"));
+    public static final ArrayList<Integer> userRoleID = new ArrayList<>(Arrays.asList(120,122,124,126,128));
 
     public static void setDefaultFont(Context context,
                                       String staticTypefaceFieldName, String fontAssetName) {

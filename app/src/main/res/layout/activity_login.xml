@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 app:boxStrokeColor="@color/colorAccent"
-                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidth="1dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:textColorHint="@color/black"
                 android:layout_gravity="center">
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 app:boxStrokeColor="@color/colorAccent"
-                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidth="1dp"
                 app:endIconTint="@color/colorAccent"
                 app:endIconMode="password_toggle"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"

@@ -81,7 +81,6 @@ public class ProcessorActivity extends AppCompatActivity {
 
             int dimensionQR = Utilities.getQRDimension((WindowManager) Objects.requireNonNull(getSystemService(WINDOW_SERVICE)));
             qrgEncoder = new QRGEncoder("27SMZJ2LHV", null, QRGContents.Type.TEXT, dimensionQR);
-            qrgEncoder.setColorBlack(R.color.colorAccent);
 
             try {
 
