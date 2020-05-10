@@ -22,4 +22,5 @@
     <string name="done">Done</string>
     <string name="productIDMessage">The Product ID is :</string>
     <string name="generate">Generate QR code</string>
+    <string name="retry">Retry</string>
 </resources>

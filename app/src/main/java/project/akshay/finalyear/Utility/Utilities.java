@@ -11,7 +11,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static android.content.Context.WINDOW_SERVICE;
 
 public class Utilities {
 

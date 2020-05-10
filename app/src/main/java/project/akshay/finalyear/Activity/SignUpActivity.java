@@ -1,5 +1,6 @@
 package project.akshay.finalyear.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +9,18 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,6 +42,10 @@ public class SignUpActivity extends AppCompatActivity implements FragmentInterfa
     private BottomDialogFragment bottomDialogFragment;
 
     TextView titleText;
+
+    @BindView(R.id.parentLayout)
+    RelativeLayout parentLayout;
+
     @BindView(R.id.nameText)
     TextInputEditText nameText;
 
@@ -92,44 +104,95 @@ public class SignUpActivity extends AppCompatActivity implements FragmentInterfa
 
         });
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        signUpButton.setOnClickListener(view -> {
 
-                TransitionManager.beginDelayedTransition(buttonLayout);
-                signUpProgress.setVisibility(View.VISIBLE);
-                signUpButton.setVisibility(View.GONE);
+            toggleButtonAnimation(true);
 
-                name = Objects.requireNonNull(nameText.getText()).toString();
-                email = Objects.requireNonNull(emailText.getText()).toString();
-                mob = Objects.requireNonNull(mobText.getText()).toString();
-                password = Objects.requireNonNull(passwordText.getText()).toString();
-                confPassword = Objects.requireNonNull(confPasswordText.getText()).toString();
+            name = Objects.requireNonNull(nameText.getText()).toString();
+            email = Objects.requireNonNull(emailText.getText()).toString();
+            mob = Objects.requireNonNull(mobText.getText()).toString();
+            password = Objects.requireNonNull(passwordText.getText()).toString();
+            confPassword = Objects.requireNonNull(confPasswordText.getText()).toString();
 
-                if(password.equals(confPassword)) {
+            if(password.equals(confPassword)) {
 
-                    firebaseAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(task -> {
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(task -> {
 
-                                if(task.isSuccessful()) {
+                            if(task.isSuccessful()) {
 
-                                    User user = new User(name,mob,email,userType);
-                                    databaseReference
-                                            .child("users")
-                                            .child(firebaseAuth.getCurrentUser().getUid())
-                                            .setValue(user);
+                                User user = new User(name,mob,email,userType);
+                                databaseReference
+                                        .child("users")
+                                        .child(firebaseAuth.getCurrentUser().getUid())
+                                        .setValue(user);
 
-                                    Utilities.notifyUser(SignUpActivity.this, "Account created");
-                                    onBackPressed();
+                                Utilities.notifyUser(SignUpActivity.this, "Account created");
+                                onBackPressed();
+
+                            }
+
+                        })
+                        .addOnFailureListener(e -> {
+
+                            if(e instanceof FirebaseAuthException) {
+
+                                String errorCode = ((FirebaseAuthException) e).getErrorCode();
+
+                                switch (errorCode) {
+
+                                    case "ERROR_INVALID_EMAIL":
+                                        emailText.setError("The email address is badly formatted.");
+                                        emailText.requestFocus();
+                                        break;
+
+                                    case "ERROR_EMAIL_ALREADY_IN_USE":
+                                        emailText.setError("The email address is already in use by another account.");
+                                        emailText.requestFocus();
+                                        break;
 
                                 }
 
-                            });
+                            } else if(e instanceof FirebaseNetworkException) {
 
-                }
+                                Snackbar.make(parentLayout, "Check your internet connection.", Snackbar.LENGTH_INDEFINITE)
+                                        .setAction(R.string.retry, view1 -> {
+
+                                            signUpButton.callOnClick();
+
+                                        })
+                                        .show();
+
+                            }
+
+                            toggleButtonAnimation(false);
+
+                        });
+
+            } else {
+
+                toggleButtonAnimation(false);
+
+                confPasswordText.setError("Password does not match", null);
+                confPasswordText.requestFocus();
 
             }
+
         });
+
+    }
+
+    private void toggleButtonAnimation(boolean toggle) {
+
+        TransitionManager.beginDelayedTransition(buttonLayout);
+
+        if (toggle) {
+            signUpProgress.setVisibility(View.VISIBLE);
+            signUpButton.setVisibility(View.GONE);
+        } else {
+            signUpProgress.setVisibility(View.GONE);
+            signUpButton.setVisibility(View.VISIBLE);
+        }
 
     }
 

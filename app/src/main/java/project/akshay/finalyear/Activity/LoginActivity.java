@@ -9,11 +9,15 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +34,9 @@ import project.akshay.finalyear.Model.User;
 import project.akshay.finalyear.Utility.Utilities;
 
 public class LoginActivity extends AppCompatActivity {
+
+    @BindView(R.id.parentLayout)
+    LinearLayout parentLayout;
 
     @BindView(R.id.loginProgress)
     ProgressBar loginProgress;
@@ -121,7 +128,51 @@ public class LoginActivity extends AppCompatActivity {
                             Utilities.notifyUser(LoginActivity.this,"Something went wrong, try again!");
                         }
                     })
-                    .addOnFailureListener(e -> Utilities.notifyUser(LoginActivity.this, e.getLocalizedMessage()));
+                    .addOnFailureListener(e -> {
+
+                        if(e instanceof FirebaseNetworkException) {
+
+                            Snackbar.make(parentLayout, "Check your internet connection.", Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.retry, view1 -> {
+
+                                        signUpButton.callOnClick();
+
+                                    })
+                                    .show();
+
+                        } else if(e instanceof FirebaseAuthException) {
+
+                            String errorCode = ((FirebaseAuthException) e).getErrorCode();
+
+                            switch (errorCode) {
+
+                                case "ERROR_INVALID_EMAIL":
+                                    emailEditText.setError("The email address is badly formatted.");
+                                    emailEditText.requestFocus();
+                                    break;
+
+                                case "ERROR_WRONG_PASSWORD":
+                                    passwordEditText.setError("The password is invalid.");
+                                    passwordEditText.requestFocus();
+                                    break;
+
+                                case "ERROR_INVALID_CREDENTIAL":
+                                    Utilities.notifyUser(LoginActivity.this, "The credentials has either expired or is invalid.");
+                                    break;
+
+                                case "ERROR_USER_NOT_FOUND":
+                                    Utilities.notifyUser(LoginActivity.this, "You're not yet registered.");
+                                    break;
+
+                                case "ERROR_USER_DISABLED":
+                                    Utilities.notifyUser(LoginActivity.this, "This account has been disabled.");
+                                    break;
+
+                            }
+
+                        }
+
+                    });
 
         });
 
