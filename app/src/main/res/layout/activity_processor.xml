@@ -18,23 +18,178 @@
         android:textSize="24sp"
         android:textColor="@color/colorAccent"/>
 
-    <ImageView
-        android:id="@+id/qrImageView"
-        android:contentDescription="@string/generate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/generateButton"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@id/qrImageView"
-        android:layout_margin="25dp"
+        android:layout_below="@id/welcomeText"
+        android:layout_marginTop="10dp"
+        android:text="Processor"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="@string/generate"/>
+        android:textSize="22sp"
+        android:textColor="@color/colorAccent"/>
+
+    <LinearLayout
+        android:id="@+id/formLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/productIDText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/productID"
+                android:inputType="text"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/companyTextLayout"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/companyText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/companyName"
+                android:inputType="text"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateReceived"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/dateReceived"
+                android:inputType="date"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/processingMethod"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/processingMethod"
+                android:inputType="text"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateDelivered"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/dateDelivered"
+                android:inputType="date"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expiryDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/expiryDate"
+                android:inputType="date"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/black"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deliveredTo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/deliveredTo"
+                android:inputType="text"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="5dp"
+            android:text="@string/submit"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textAllCaps="false"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logoutButton"

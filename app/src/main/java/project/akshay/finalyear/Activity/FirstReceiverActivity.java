@@ -3,7 +3,10 @@ package project.akshay.finalyear.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import project.akshay.finalyear.Model.FirstReceiverDetails;
 import project.akshay.finalyear.Model.Product;
 import project.akshay.finalyear.Utility.PreferencesManager;
 import project.akshay.finalyear.R;
@@ -36,6 +40,24 @@ public class FirstReceiverActivity extends AppCompatActivity {
 
     @BindView(R.id.submitButton)
     MaterialButton submitButton;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    @BindView(R.id.productIDText)
+    TextView productID;
+
+    @BindView(R.id.companyText)
+    TextView name;
+
+    @BindView(R.id.dateReceived)
+    TextView dateReceived;
+
+    @BindView(R.id.dateDelivered)
+    TextView dateDelivered;
+
+    @BindView(R.id.locationText)
+    TextView location;
 
     private PreferencesManager preferencesManager;
     private DatabaseReference databaseReference;
@@ -64,8 +86,19 @@ public class FirstReceiverActivity extends AppCompatActivity {
 
         submitButton.setOnClickListener(view -> {
 
+            submitButton.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+
             databaseReference = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference productReference = databaseReference.child("products/").child("27SMZJ2LHV");
+            DatabaseReference productReference = databaseReference.child("products/").child(productID.getText().toString());
+
+            FirstReceiverDetails firstReceiverDetails = new FirstReceiverDetails(
+                    preferencesManager.getUserID(),
+                    name.getText().toString(),
+                    dateReceived.getText().toString(),
+                    dateDelivered.getText().toString(),
+                    location.getText().toString()
+            );
 
             productReference
                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -74,12 +107,22 @@ public class FirstReceiverActivity extends AppCompatActivity {
 
                             Product product = dataSnapshot.getValue(Product.class);
                             assert product != null;
-
-                            product.getSupplyChainArray().add(preferencesManager.getUserID());
+                            product.setFirstReceiverDetails(firstReceiverDetails);
 
                             productReference
-                                    .child("supplyChainArray")
-                                    .setValue(product.getSupplyChainArray());
+                                    .child("firstReceiverDetails")
+                                    .setValue(product.getFirstReceiverDetails());
+
+                            Toast.makeText(getApplicationContext(), "Product added", Toast.LENGTH_SHORT).show();
+
+                            name.setText("");
+                            dateDelivered.setText("");
+                            dateReceived.setText("");
+                            location.setText("");
+                            productID.setText("");
+
+                            progressBar.setVisibility(View.GONE);
+                            submitButton.setVisibility(View.VISIBLE);
 
                         }
 

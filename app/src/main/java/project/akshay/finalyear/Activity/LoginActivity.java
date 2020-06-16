@@ -87,9 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(view -> {
 
-            TransitionManager.beginDelayedTransition(loginLayout);
-            loginProgress.setVisibility(View.VISIBLE);
-            loginButton.setVisibility(View.GONE);
+            toggleButtonAnimation(true);
 
             emailAddress = Objects.requireNonNull(emailEditText.getText()).toString();
             password = Objects.requireNonNull(passwordEditText.getText()).toString();
@@ -124,18 +122,19 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     });
 
-                        } else {
-                            Utilities.notifyUser(LoginActivity.this,"Something went wrong, try again!");
                         }
+
                     })
                     .addOnFailureListener(e -> {
+
+                        toggleButtonAnimation(false);
 
                         if(e instanceof FirebaseNetworkException) {
 
                             Snackbar.make(parentLayout, "Check your internet connection.", Snackbar.LENGTH_INDEFINITE)
                                     .setAction(R.string.retry, view1 -> {
 
-                                        signUpButton.callOnClick();
+                                        loginButton.callOnClick();
 
                                     })
                                     .show();
@@ -152,8 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
 
                                 case "ERROR_WRONG_PASSWORD":
-                                    passwordEditText.setError("The password is invalid.");
-                                    passwordEditText.requestFocus();
+                                    Utilities.notifyUser(LoginActivity.this, "Wrong credentials.");
                                     break;
 
                                 case "ERROR_INVALID_CREDENTIAL":
@@ -185,13 +183,28 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void toggleButtonAnimation(boolean toggle) {
+
+
+        TransitionManager.beginDelayedTransition(loginLayout);
+
+        if (toggle) {
+            loginProgress.setVisibility(View.VISIBLE);
+            loginButton.setVisibility(View.GONE);
+        } else {
+            loginProgress.setVisibility(View.GONE);
+            loginButton.setVisibility(View.VISIBLE);
+        }
+
+    }
+
     private void updateScreen(int userType) {
 
-        /*startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
+        startActivity(new Intent(LoginActivity.this, CustomerActivity.class));
         overridePendingTransition(R.anim.slide_from_right,R.anim.slide_to_left);
-        finish();*/
+        finish();
 
-        switch (userType) {
+        /*switch (userType) {
 
             case Utilities.ID_PROCESSOR:
                 startActivity(new Intent(LoginActivity.this, ProcessorActivity.class));
@@ -223,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
                 break;
 
-        }
+        }*/
 
     }
 }

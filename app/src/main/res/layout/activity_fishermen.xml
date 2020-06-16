@@ -18,6 +18,17 @@
         android:textSize="24sp"
         android:textColor="@color/colorAccent"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/welcomeText"
+        android:layout_marginTop="10dp"
+        android:text="Fisherman"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/colorAccent"/>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -145,6 +156,25 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:boxStrokeColor="@color/colorAccent"
+                app:boxStrokeWidth="2dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:textColorHint="@color/black"
+                android:layout_gravity="center">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/timeCaughtText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/dateCaught"
+                    android:inputType="date"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/locationTextLayout"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
@@ -156,7 +186,7 @@
                 android:layout_gravity="center">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordText"
+                    android:id="@+id/locationText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/where"

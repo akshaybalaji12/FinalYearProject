@@ -19,6 +19,7 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import project.akshay.finalyear.Model.FishermanDetails;
 import project.akshay.finalyear.Model.Product;
 import project.akshay.finalyear.Utility.PreferencesManager;
 import project.akshay.finalyear.R;
@@ -54,6 +55,18 @@ public class FishermenActivity extends AppCompatActivity {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+
+    @BindView(R.id.companyText)
+    TextView name;
+
+    @BindView(R.id.fishTypeText)
+    TextView type;
+
+    @BindView(R.id.timeCaughtText)
+    TextView date;
+
+    @BindView(R.id.locationText)
+    TextView location;
 
     private PreferencesManager preferencesManager;
     private DatabaseReference databaseReference;
@@ -100,7 +113,15 @@ public class FishermenActivity extends AppCompatActivity {
             String productID = generateProductID();
 
             Product newProduct = new Product(productID);
-            newProduct.getSupplyChainArray().add(preferencesManager.getUserID());
+            FishermanDetails fishermanDetails = new FishermanDetails(
+                    preferencesManager.getUserID(),
+                    name.getText().toString(),
+                    type.getText().toString(),
+                    date.getText().toString(),
+                    location.getText().toString()
+            );
+
+            newProduct.setFishermanDetails(fishermanDetails);
 
             //TODO create Product object
 

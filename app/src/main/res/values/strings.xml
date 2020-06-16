@@ -15,12 +15,26 @@
     <string name="scan">Scan QR code</string>
     <string name="logout">Logout</string>
     <string name="addProduct">Add Product</string>
+
+    <string name="productID">Product ID</string>
     <string name="companyName">Name of the company</string>
+    <string name="dateCaught">Date the fish was caught</string>
+    <string name="timeCaught">Time the fish was caught</string>
+    <string name="timeReceived">Time Received</string>
+    <string name="dateReceived">Date Received</string>
+    <string name="dateDelivered">Date Delivered</string>
+    <string name="processingMethod">Processing method</string>
+    <string name="expiryDate">Expiry Date</string>
+    <string name="deliveredTo">Delivered to</string>
+    <string name="shopName">Name of the shop</string>
     <string name="fishType">Fish type</string>
     <string name="where">Location</string>
+
+
     <string name="submit">Submit</string>
     <string name="done">Done</string>
     <string name="productIDMessage">The Product ID is :</string>
     <string name="generate">Generate QR code</string>
     <string name="retry">Retry</string>
+    <string name="selectRole">Select role.</string>
 </resources>

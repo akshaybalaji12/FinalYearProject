@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="project.akshay.finalyear">
 
+    <uses-permission android:name="android.hardware.camera" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".ProjectApplication"
         android:allowBackup="true"
@@ -10,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Activity.CustomerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionTheme"/>
@@ -48,10 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
-    <uses-permission android:name="android.hardware.camera" />
-    <uses-permission android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
+    </application>
 
 </manifest>

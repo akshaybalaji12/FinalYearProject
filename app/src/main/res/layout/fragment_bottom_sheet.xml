@@ -4,6 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:text="@string/selectRole"
+        android:layout_margin="16dp"/>
+
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"

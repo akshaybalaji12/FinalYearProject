@@ -1,6 +1,5 @@
 package project.akshay.finalyear.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,11 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseNetworkException;
@@ -77,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity implements FragmentInterfa
     String signUpTitle;
 
     String name, email, password, confPassword, mob;
-    int userType;
+    int userType = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,77 +104,113 @@ public class SignUpActivity extends AppCompatActivity implements FragmentInterfa
 
             toggleButtonAnimation(true);
 
-            name = Objects.requireNonNull(nameText.getText()).toString();
-            email = Objects.requireNonNull(emailText.getText()).toString();
-            mob = Objects.requireNonNull(mobText.getText()).toString();
-            password = Objects.requireNonNull(passwordText.getText()).toString();
-            confPassword = Objects.requireNonNull(confPasswordText.getText()).toString();
+            name = nameText.getText().toString();
+            email = emailText.getText().toString();
+            mob = mobText.getText().toString();
+            password = passwordText.getText().toString();
+            confPassword = confPasswordText.getText().toString();
 
-            if(password.equals(confPassword)) {
+            if(!checkEmptyTexts()) {
 
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(task -> {
+                if(password.equals(confPassword) && userType != 0) {
 
-                            if(task.isSuccessful()) {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(task -> {
 
-                                User user = new User(name,mob,email,userType);
-                                databaseReference
-                                        .child("users")
-                                        .child(firebaseAuth.getCurrentUser().getUid())
-                                        .setValue(user);
+                                if(task.isSuccessful()) {
 
-                                Utilities.notifyUser(SignUpActivity.this, "Account created");
-                                onBackPressed();
+                                    User user = new User(name,mob,email,userType);
+                                    databaseReference
+                                            .child("users")
+                                            .child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())
+                                            .setValue(user);
 
-                            }
-
-                        })
-                        .addOnFailureListener(e -> {
-
-                            if(e instanceof FirebaseAuthException) {
-
-                                String errorCode = ((FirebaseAuthException) e).getErrorCode();
-
-                                switch (errorCode) {
-
-                                    case "ERROR_INVALID_EMAIL":
-                                        emailText.setError("The email address is badly formatted.");
-                                        emailText.requestFocus();
-                                        break;
-
-                                    case "ERROR_EMAIL_ALREADY_IN_USE":
-                                        emailText.setError("The email address is already in use by another account.");
-                                        emailText.requestFocus();
-                                        break;
+                                    Utilities.notifyUser(SignUpActivity.this, "Account created");
+                                    onBackPressed();
 
                                 }
 
-                            } else if(e instanceof FirebaseNetworkException) {
+                            })
+                            .addOnFailureListener(e -> {
 
-                                Snackbar.make(parentLayout, "Check your internet connection.", Snackbar.LENGTH_INDEFINITE)
-                                        .setAction(R.string.retry, view1 -> {
+                                if(e instanceof FirebaseAuthException) {
 
-                                            signUpButton.callOnClick();
+                                    String errorCode = ((FirebaseAuthException) e).getErrorCode();
 
-                                        })
-                                        .show();
+                                    switch (errorCode) {
 
-                            }
+                                        case "ERROR_INVALID_EMAIL":
+                                            emailText.setError("The email address is badly formatted.");
+                                            emailText.requestFocus();
+                                            break;
 
-                            toggleButtonAnimation(false);
+                                        case "ERROR_EMAIL_ALREADY_IN_USE":
+                                            emailText.setError("The email address is already in use by another account.");
+                                            emailText.requestFocus();
+                                            break;
 
-                        });
+                                    }
+
+                                } else if(e instanceof FirebaseNetworkException) {
+
+                                    Snackbar.make(parentLayout, "Check your internet connection.", Snackbar.LENGTH_INDEFINITE)
+                                            .setAction(R.string.retry, view1 -> signUpButton.callOnClick())
+                                            .show();
+
+                                }
+
+                                toggleButtonAnimation(false);
+
+                            });
+
+                } else {
+
+                    toggleButtonAnimation(false);
+
+                    if(userType == 0) {
+
+                        userTypeText.callOnClick();
+
+                    } else {
+
+                        confPasswordText.setError("Password does not match", null);
+                        confPasswordText.requestFocus();
+
+                    }
+
+                }
 
             } else {
 
                 toggleButtonAnimation(false);
 
-                confPasswordText.setError("Password does not match", null);
-                confPasswordText.requestFocus();
-
             }
 
         });
+
+    }
+
+    private boolean checkEmptyTexts() {
+
+        String errorText = "Cannot not be empty.";
+
+        if(name.equals("")) {
+            nameText.setError(errorText);
+        }
+
+        if(email.equals("")) {
+            emailText.setError(errorText);
+        }
+
+        if(mob.equals("")) {
+            mobText.setError(errorText);
+        }
+
+        if(password.equals("")) {
+            passwordText.setError(errorText, null);
+        }
+
+        return name.equals("") || email.equals("") || mob.equals("") || password.equals("");
 
     }
 

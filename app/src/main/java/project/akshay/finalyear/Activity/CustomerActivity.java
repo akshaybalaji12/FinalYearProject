@@ -6,7 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +29,38 @@ public class CustomerActivity extends AppCompatActivity {
 
     @BindView(R.id.qrCodeImage)
     ImageView qrCodeImage;
+
+    @BindView(R.id.text)
+    TextView text;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    @BindView(R.id.productLayout)
+    LinearLayout productLayout;
+
+    @BindView(R.id.productName)
+    TextView name;
+
+    @BindView(R.id.caughtAt)
+    TextView caughtAt;
+
+    @BindView(R.id.caughtOn)
+    TextView caughtOn;
+
+    @BindView(R.id.processedBy)
+    TextView processedBy;
+
+    @BindView(R.id.processedOn)
+    TextView processedOn;
+
+    @BindView(R.id.method)
+    TextView method;
+
+    @BindView(R.id.expiryDate)
+    TextView expiry;
+
+
 
     private DatabaseReference databaseReference;
 
@@ -55,6 +92,9 @@ public class CustomerActivity extends AppCompatActivity {
 
                 assert data != null;
                 getProductDetails(data.getStringExtra(Utilities.STRING_EXTRA_QR_CODE));
+                qrCodeImage.setVisibility(View.GONE);
+                text.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
 
             }
 
@@ -73,7 +113,16 @@ public class CustomerActivity extends AppCompatActivity {
                         Product product = dataSnapshot.getValue(Product.class);
                         assert product != null;
 
-                        Utilities.notifyUser(CustomerActivity.this, product.getSupplyChainArray().get(0));
+                        name.setText(String.format("Fish type : %s" , product.getFishermanDetails().getFishType()));
+                        caughtAt.setText(String.format("Caught at : %s", product.getFishermanDetails().getLocation()));
+                        caughtOn.setText(String.format("Caught on : %s", product.getFishermanDetails().getDate()));
+                        processedBy.setText(String.format("Processed by : %s", product.getProcessorDetails().getName()));
+                        processedOn.setText(String.format("Processed on : %s", product.getProcessorDetails().getReceivedDate()));
+                        method.setText(String.format("Processing method : %s", product.getProcessorDetails().getProcessingMethod()));
+                        expiry.setText(String.format("Expiry date : %s", product.getProcessorDetails().getExpiryDate()));
+
+                        productLayout.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
 
                     }
 

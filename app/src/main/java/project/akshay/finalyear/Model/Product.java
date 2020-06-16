@@ -11,33 +11,61 @@ import java.util.Map;
 public class Product {
 
     private String productID;
-    private ArrayList<String> supplyChainArray;
-
-    public Map<String, Boolean> stars = new HashMap<>();
+    private FishermanDetails fishermanDetails;
+    private FirstReceiverDetails firstReceiverDetails;
+    private ProcessorDetails processorDetails;
+    private DistributorDetails distributorDetails;
+    private ShopDetails shopDetails;
 
     public Product() {
     }
 
     public Product(String productID) {
         this.productID = productID;
-        this.supplyChainArray = new ArrayList<>();
+    }
+
+    public void setFishermanDetails(FishermanDetails fishermanDetails) {
+        this.fishermanDetails = fishermanDetails;
+    }
+
+    public void setFirstReceiverDetails(FirstReceiverDetails firstReceiverDetails) {
+        this.firstReceiverDetails = firstReceiverDetails;
+    }
+
+    public void setProcessorDetails(ProcessorDetails processorDetails) {
+        this.processorDetails = processorDetails;
+    }
+
+    public void setDistributorDetails(DistributorDetails distributorDetails) {
+        this.distributorDetails = distributorDetails;
+    }
+
+    public void setShopDetails(ShopDetails shopDetails) {
+        this.shopDetails = shopDetails;
     }
 
     public String getProductID() {
         return productID;
     }
 
-    public ArrayList<String> getSupplyChainArray() {
-        return supplyChainArray;
+    public FishermanDetails getFishermanDetails() {
+        return fishermanDetails;
     }
 
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("productID", productID);
-        result.put("supplyChainArray", supplyChainArray);
+    public FirstReceiverDetails getFirstReceiverDetails() {
+        return firstReceiverDetails;
+    }
 
-        return result;
+    public ProcessorDetails getProcessorDetails() {
+        return processorDetails;
+    }
+
+    public DistributorDetails getDistributorDetails() {
+        return distributorDetails;
+    }
+
+    public ShopDetails getShopDetails() {
+        return shopDetails;
     }
 
 }

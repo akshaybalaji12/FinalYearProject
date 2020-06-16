@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,7 +65,11 @@ public class BottomDialogFragment extends BottomSheetDialogFragment {
 
         doneImage.setOnClickListener(view1 -> {
 
-            fragmentInterface.callBackMethod(Utilities.userRoles.get(gridViewAdapter.getSelected().get(0)));
+            if(!gridViewAdapter.getSelected().isEmpty()){
+
+                fragmentInterface.callBackMethod(Utilities.userRoles.get(gridViewAdapter.getSelected().get(0)));
+
+            }
 
         });
 

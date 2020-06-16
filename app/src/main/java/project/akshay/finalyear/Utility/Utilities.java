@@ -3,6 +3,7 @@ package project.akshay.finalyear.Utility;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -63,6 +64,12 @@ public class Utilities {
         smallerDimension = smallerDimension * 3 / 4;
 
         return smallerDimension;
+
+    }
+
+    public static void printLogMessages(String tag, String message) {
+
+        Log.d(tag, message);
 
     }
 
